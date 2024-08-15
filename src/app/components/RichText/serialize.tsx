@@ -1,6 +1,5 @@
 import { BannerBlock } from '@/blocks/Banner'
 import { CallToActionBlock } from '@/blocks/CallToAction'
-import { CodeBlock, CodeBlockProps } from '@/blocks/Code'
 import { MediaBlock } from '@/blocks/MediaBlock'
 import React, { Fragment, JSX } from 'react'
 import { CMSLink } from 'src/app/components/Link'
@@ -25,7 +24,6 @@ export type NodeTypes =
       | Extract<Page['layout'][0], { blockType: 'cta' }>
       | Extract<Page['layout'][0], { blockType: 'mediaBlock' }>
       | BannerBlockProps
-      | CodeBlockProps
     >
 
 type Props = {
@@ -122,8 +120,6 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
               )
             case 'banner':
               return <BannerBlock className="col-start-2 mb-4" key={index} {...block} />
-            case 'code':
-              return <CodeBlock className="col-start-2" key={index} {...block} />
             default:
               return null
           }
