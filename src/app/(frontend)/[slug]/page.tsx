@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { PayloadRedirects } from '@/components/PayloadRedirects'
 import configPromise from '@payload-config'
 import { getPayloadHMR } from '@payloadcms/next/utilities'
-import { draftMode, headers } from 'next/headers'
+import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
 import { homeStatic } from 'src/payload/seed/home-static'
 
@@ -12,6 +12,8 @@ import type { Page as PageType } from '../../../payload-types'
 import { Blocks } from '../../components/Blocks'
 import { Hero } from '../../components/Hero'
 import { generateMeta } from '../../utilities/generateMeta'
+
+import { admin, shopify } from '@/utilities/shopify'
 
 export async function generateStaticParams() {
   const payload = await getPayloadHMR({ config: configPromise })
@@ -49,6 +51,11 @@ export default async function Page({ params: { slug = 'home' } }) {
 
   const { hero, layout } = page
 
+  const adminApiTest = await (await admin.get('products')).json()
+
+  const shopifyApiTest = await shopify.rest.Collect.all({})
+
+  console.log('adminApiTest', adminApiTest)
   return (
     <article className="pt-16 pb-24">
       {/* Allows redirects for valid pages too */}
