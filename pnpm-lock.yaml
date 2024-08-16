@@ -54,12 +54,6 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.0.2
         version: 1.1.0(react@19.0.0-rc-06d0b89e-20240801)(types-react@19.0.0-rc.0)
-      '@shopify/admin-api-client':
-        specifier: ^1.0.1
-        version: 1.0.1
-      '@shopify/shopify-api':
-        specifier: ^11.2.0
-        version: 11.2.0
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -108,6 +102,9 @@ importers:
       sharp:
         specifier: 0.32.6
         version: 0.32.6
+      shopify-buy:
+        specifier: ^2.22.0
+        version: 2.22.0
       tailwind-merge:
         specifier: ^2.3.0
         version: 2.5.2
@@ -136,6 +133,9 @@ importers:
       '@types/react-dom':
         specifier: npm:types-react-dom@19.0.0-rc.0
         version: types-react-dom@19.0.0-rc.0
+      '@types/shopify-buy':
+        specifier: ^2.17.4
+        version: 2.17.4
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.20(postcss@8.4.41)
@@ -1401,22 +1401,6 @@ packages:
   '@selderee/plugin-htmlparser2@0.10.0':
     resolution: {integrity: sha512-gW69MEamZ4wk1OsOq1nG1jcyhXIQcnrsX5JwixVw/9xaiav8TCyjESAruu1Rz9yyInhgBXxkNwMeygKnN2uxNA==}
 
-  '@shopify/admin-api-client@1.0.1':
-    resolution: {integrity: sha512-eyTr8p3dtq/J6goWA2Sh66ejZH1FnIF/9vY23nqDFJDboNZLUNvbZ+t7roBasw1n5mYn1Jy5NYzjZHpbIJSl1g==}
-
-  '@shopify/graphql-client@1.1.0':
-    resolution: {integrity: sha512-ZHEqNa5mTKa/dB6XH5F0Zdt2SAGOc9evRhJLoaI/DEftvuEaqZo4CRa4THONCZFwwgClW3WaoZBlqggILfYBuw==}
-
-  '@shopify/network@3.3.0':
-    resolution: {integrity: sha512-Lln7vglzLK9KiYhl9ucQFVM7ArlpUM21xkDriBX8kVrqsoBsi+4vFIjf1wjhNPT0J/zHMjky7jiTnxVfdm+xXw==}
-    engines: {node: '>=18.12.0'}
-
-  '@shopify/shopify-api@11.2.0':
-    resolution: {integrity: sha512-+MQme3Ca4JOLxAWJyXFWM7Ybt7EC7e8Mhgid2dGrVkl054FtwkrUyuY1al77o/Q0roQtTtEqz5EwjcFUggvCNg==}
-
-  '@shopify/storefront-api-client@1.0.1':
-    resolution: {integrity: sha512-cz9gp7aITrbNyTO8ULOHFQA5CuBtRqkc23RJW8iX2FticneGgksUg4Uwj5yQ+6u5BMWoEcLn9+B6TS799YOTcA==}
-
   '@smithy/abort-controller@3.1.1':
     resolution: {integrity: sha512-MBJBiidoe+0cTFhyxT8g+9g7CeVccLM0IOKKUMCNQ1CNMJ/eIfoo0RTfVrXOONEI1UCN1W+zkiHSbzUNE9dZtQ==}
     engines: {node: '>=16.0.0'}
@@ -1675,6 +1659,9 @@ packages:
 
   '@types/semver@7.5.8':
     resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
+
+  '@types/shopify-buy@2.17.4':
+    resolution: {integrity: sha512-svTrPgQJaKcKv0yGAdQAsgHR8JF8qSWPQThPU+cawSq2+2Wj/ZD8AVXn3FenXwEVfhqGcRhZOKJJfSd7+gipYg==}
 
   '@types/uuid@10.0.0':
     resolution: {integrity: sha512-7gqG38EyHgyP1S+7+xomFtL+ZNHcKv6DwNaCZmJmo1vgMugyF3TCnXVg4t1uk89mLNwnLtnY3TpOpCOyp1/xHQ==}
@@ -2189,9 +2176,6 @@ packages:
   comment-parser@1.4.1:
     resolution: {integrity: sha512-buhp5kePrmda3vhc5B9t7pUQXAb2Tnd0qgpkIhPhkHXxJpiPJ11H0ZEU0oBpJ2QztSbzG/ZxMj/CHsYJqRHmyg==}
     engines: {node: '>= 12.0.0'}
-
-  compare-versions@6.1.1:
-    resolution: {integrity: sha512-4hm4VPpIecmlg59CHXnRDnqGplJFrbLG4aFEl5vl6cK1u76ws3LLvX7ikFnTDl5vo39sjWD6AaDPYodJp/NNHg==}
 
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
@@ -3178,10 +3162,6 @@ packages:
   isarray@2.0.5:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
 
-  isbot@5.1.16:
-    resolution: {integrity: sha512-zvRjcw/4UfKiCVx+/PqXPKthufO5m2PpJSbA0tVZY9ns7hlQRV1xqWpEFcqyfkK/MrChsXPmu1zpxECjcaEuKg==}
-    engines: {node: '>=18'}
-
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
@@ -3200,9 +3180,6 @@ packages:
   jiti@1.21.6:
     resolution: {integrity: sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==}
     hasBin: true
-
-  jose@5.6.3:
-    resolution: {integrity: sha512-1Jh//hEEwMhNYPDDLwXHa2ePWgWiFNNUadVmguAAw2IJ6sj9mNxV5tGXJNqlMkJAybF6Lgw1mISDxTePP/187g==}
 
   joycon@3.1.1:
     resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
@@ -4129,6 +4106,9 @@ packages:
   shebang-regex@3.0.0:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
+
+  shopify-buy@2.22.0:
+    resolution: {integrity: sha512-Y7FXmgX+By5VjF449oGj6+f8wBEKSupeAS/7bz9MXnvFmhT4C3ka/mzTjVDZTmq0arJdx3EyxUgpaWez3ztoKg==}
 
   side-channel@1.0.6:
     resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
@@ -6368,32 +6348,6 @@ snapshots:
       domhandler: 5.0.3
       selderee: 0.10.0
 
-  '@shopify/admin-api-client@1.0.1':
-    dependencies:
-      '@shopify/graphql-client': 1.1.0
-
-  '@shopify/graphql-client@1.1.0': {}
-
-  '@shopify/network@3.3.0': {}
-
-  '@shopify/shopify-api@11.2.0':
-    dependencies:
-      '@shopify/admin-api-client': 1.0.1
-      '@shopify/network': 3.3.0
-      '@shopify/storefront-api-client': 1.0.1
-      compare-versions: 6.1.1
-      isbot: 5.1.16
-      jose: 5.6.3
-      node-fetch: 2.7.0
-      tslib: 2.6.3
-      uuid: 10.0.0
-    transitivePeerDependencies:
-      - encoding
-
-  '@shopify/storefront-api-client@1.0.1':
-    dependencies:
-      '@shopify/graphql-client': 1.1.0
-
   '@smithy/abort-controller@3.1.1':
     dependencies:
       '@smithy/types': 3.3.0
@@ -6774,6 +6728,8 @@ snapshots:
       '@types/react': types-react@19.0.0-rc.0
 
   '@types/semver@7.5.8': {}
+
+  '@types/shopify-buy@2.17.4': {}
 
   '@types/uuid@10.0.0': {}
 
@@ -7418,8 +7374,6 @@ snapshots:
   commander@4.1.1: {}
 
   comment-parser@1.4.1: {}
-
-  compare-versions@6.1.1: {}
 
   concat-map@0.0.1: {}
 
@@ -8669,8 +8623,6 @@ snapshots:
 
   isarray@2.0.5: {}
 
-  isbot@5.1.16: {}
-
   isexe@2.0.0: {}
 
   isomorphic-unfetch@3.1.0:
@@ -8697,8 +8649,6 @@ snapshots:
       '@pkgjs/parseargs': 0.11.0
 
   jiti@1.21.6: {}
-
-  jose@5.6.3: {}
 
   joycon@3.1.1: {}
 
@@ -9727,6 +9677,8 @@ snapshots:
       shebang-regex: 3.0.0
 
   shebang-regex@3.0.0: {}
+
+  shopify-buy@2.22.0: {}
 
   side-channel@1.0.6:
     dependencies:
