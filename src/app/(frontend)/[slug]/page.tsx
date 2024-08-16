@@ -40,25 +40,38 @@ export default async function Page({ params: { slug = 'home' } }) {
     slug,
   })
 
-  // Remove this code once your website is seeded
-  if (!page) {
-    page = homeStatic
-  }
-
   if (!page) {
     return <PayloadRedirects url={url} />
   }
 
   const { hero, layout } = page
 
-  const collections = await shopifyClient.collection.fetchAllWithProducts();
+  const request = await shopifyClient.fetch(`#graphql
+    query Collections {
+      collections(first: 250) {
+        nodes {
+          title
+          metafield(namespace: "custom", key: "is_company") {
+            namespace
+            key
+            value
+          }
+        }
+      }
+    }
+  `)
 
-  console.log(JSON.stringify(collections, null, 2));
+  const { data: { collections } } = await request.json()
+  const companies = collections.nodes.filter((node) => node.metafield?.value === 'true');
 
   return (
     <article className="pt-16 pb-24">
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
+
+      <code>
+        {JSON.stringify(companies, null, 2)}
+      </code>
 
       <Hero {...hero} />
       <Blocks blocks={layout} />

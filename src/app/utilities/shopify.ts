@@ -1,7 +1,7 @@
-import Client from 'shopify-buy';
+import { createStorefrontApiClient } from '@shopify/storefront-api-client'
 
-export const shopifyClient = Client.buildClient({
-  domain: process.env.SHOPIFY_STORE_DOMAIN,
-  storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_API_ACCESS_TOKEN,
+export const shopifyClient = createStorefrontApiClient({
+  storeDomain: process.env.SHOPIFY_STORE_DOMAIN,
+  publicAccessToken: process.env.SHOPIFY_STOREFRONT_API_ACCESS_TOKEN,
   apiVersion: '2024-10'
 });

@@ -15,7 +15,9 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "payload": "payload",
     "generate:types": "payload generate:types",
-    "generate:importmap": "payload generate:importmap"
+    "generate:importmap": "payload generate:importmap",
+    "codegen": "graphql-codegen --config .graphql.ts",
+    "codegen:watch": "graphql-codegen --config .graphql.ts --watch"
   },
   "dependencies": {
     "@payloadcms/db-mongodb": "3.0.0-beta.82",
@@ -32,6 +34,8 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
+    "@shopify/api-codegen-preset": "^1.0.1",
+    "@shopify/storefront-api-client": "^1.0.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cross-env": "^7.0.3",
@@ -53,6 +57,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "5.0.2",
     "@next/eslint-plugin-next": "^13.1.6",
     "@payloadcms/eslint-config": "^1.1.1",
     "@tailwindcss/typography": "^0.5.13",
