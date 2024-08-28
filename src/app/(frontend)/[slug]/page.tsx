@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { PayloadRedirects } from '@/components/PayloadRedirects'
 import configPromise from '@payload-config'
 import { getPayloadHMR } from '@payloadcms/next/utilities'
-import { draftMode, headers } from 'next/headers'
+import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
 import { homeStatic } from 'src/payload/seed/home-static'
 
@@ -12,6 +12,8 @@ import type { Page as PageType } from '../../../payload-types'
 import { Blocks } from '../../components/Blocks'
 import { Hero } from '../../components/Hero'
 import { generateMeta } from '../../utilities/generateMeta'
+
+import { shopifyClient } from '@/utilities/shopify'
 
 export async function generateStaticParams() {
   const payload = await getPayloadHMR({ config: configPromise })
@@ -38,21 +40,38 @@ export default async function Page({ params: { slug = 'home' } }) {
     slug,
   })
 
-  // Remove this code once your website is seeded
-  if (!page) {
-    page = homeStatic
-  }
-
   if (!page) {
     return <PayloadRedirects url={url} />
   }
 
   const { hero, layout } = page
 
+  const request = await shopifyClient.fetch(`#graphql
+    query Collections {
+      collections(first: 250) {
+        nodes {
+          title
+          metafield(namespace: "custom", key: "is_company") {
+            namespace
+            key
+            value
+          }
+        }
+      }
+    }
+  `)
+
+  const { data: { collections } } = await request.json()
+  const companies = collections.nodes.filter((node) => node.metafield?.value === 'true');
+
   return (
     <article className="pt-16 pb-24">
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
+
+      <code>
+        {JSON.stringify(companies, null, 2)}
+      </code>
 
       <Hero {...hero} />
       <Blocks blocks={layout} />
