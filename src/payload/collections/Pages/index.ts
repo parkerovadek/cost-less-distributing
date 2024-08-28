@@ -1,17 +1,17 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload';
 
-import { authenticated } from '../../access/authenticated'
-import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
-import { Archive } from '../../blocks/ArchiveBlock'
-import { CallToAction } from '../../blocks/CallToAction'
-import { Content } from '../../blocks/Content'
-import { FormBlock } from '../../blocks/Form'
-import { MediaBlock } from '../../blocks/MediaBlock'
-import { hero } from '../../fields/hero'
-import { slugField } from '../../fields/slug'
-import { populatePublishedAt } from '../../hooks/populatePublishedAt'
-import { generatePreviewPath } from '../../utilities/generatePreviewPath'
-import { revalidatePage } from './hooks/revalidatePage'
+import { authenticated } from '../../access/authenticated';
+import { authenticatedOrPublished } from '../../access/authenticatedOrPublished';
+import { Archive } from '../../blocks/ArchiveBlock';
+import { CallToAction } from '../../blocks/CallToAction';
+import { Content } from '../../blocks/Content';
+import { FormBlock } from '../../blocks/Form';
+import { MediaBlock } from '../../blocks/MediaBlock';
+import { hero } from '../../fields/hero';
+import { slugField } from '../../fields/slug';
+import { populatePublishedAt } from '../../hooks/populatePublishedAt';
+import { generatePreviewPath } from '../../utilities/generatePreviewPath';
+import { revalidatePage } from './hooks/revalidatePage';
 
 import {
   MetaDescriptionField,
@@ -19,7 +19,8 @@ import {
   MetaTitleField,
   OverviewField,
   PreviewField,
-} from '@payloadcms/plugin-seo/fields'
+} from '@payloadcms/plugin-seo/fields';
+import { CompanySelector } from 'src/fields/companySelector/field';
 export const Pages: CollectionConfig = {
   slug: 'pages',
   access: {
@@ -34,8 +35,8 @@ export const Pages: CollectionConfig = {
       url: ({ data }) => {
         const path = generatePreviewPath({
           path: `/${typeof data?.slug === 'string' ? data.slug : ''}`,
-        })
-        return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`
+        });
+        return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`;
       },
     },
     preview: (doc) =>
@@ -48,6 +49,7 @@ export const Pages: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    CompanySelector,
     {
       type: 'tabs',
       tabs: [
@@ -116,4 +118,4 @@ export const Pages: CollectionConfig = {
     },
     maxPerDoc: 50,
   },
-}
+};

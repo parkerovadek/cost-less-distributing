@@ -59,6 +59,7 @@ export interface UserAuthOperations {
 export interface Page {
   id: string;
   title: string;
+  companies?: string | null;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText?: {

@@ -1,11 +1,11 @@
 // storage-adapter-import-placeholder
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { mongooseAdapter } from '@payloadcms/db-mongodb';
 
-import { payloadCloudPlugin } from '@payloadcms/plugin-cloud'
-import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
-import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
-import { redirectsPlugin } from '@payloadcms/plugin-redirects'
-import { seoPlugin } from '@payloadcms/plugin-seo'
+import { payloadCloudPlugin } from '@payloadcms/plugin-cloud';
+import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
+import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs';
+import { redirectsPlugin } from '@payloadcms/plugin-redirects';
+import { seoPlugin } from '@payloadcms/plugin-seo';
 import {
   BoldFeature,
   FixedToolbarFeature,
@@ -13,37 +13,37 @@ import {
   ItalicFeature,
   LinkFeature,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
-import sharp from 'sharp' // editor-import
-import { UnderlineFeature } from '@payloadcms/richtext-lexical'
-import path from 'path'
-import { buildConfig } from 'payload'
-import { fileURLToPath } from 'url'
+} from '@payloadcms/richtext-lexical';
+import sharp from 'sharp'; // editor-import
+import { UnderlineFeature } from '@payloadcms/richtext-lexical';
+import path from 'path';
+import { buildConfig } from 'payload';
+import { fileURLToPath } from 'url';
 
-import Categories from './payload/collections/Categories'
-import { Media } from './payload/collections/Media'
-import { Pages } from './payload/collections/Pages'
-import { Posts } from './payload/collections/Posts'
-import Users from './payload/collections/Users'
-import { seed } from './payload/endpoints/seed'
-import { Footer } from './payload/globals/Footer/Footer'
-import { Header } from './payload/globals/Header/Header'
-import { revalidateRedirects } from './payload/hooks/revalidateRedirects'
-import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
-import { Page, Post } from 'src/payload-types'
+import Categories from './payload/collections/Categories';
+import { Media } from './payload/collections/Media';
+import { Pages } from './payload/collections/Pages';
+import { Posts } from './payload/collections/Posts';
+import Users from './payload/collections/Users';
+import { seed } from './payload/endpoints/seed';
+import { Footer } from './payload/globals/Footer/Footer';
+import { Header } from './payload/globals/Header/Header';
+import { revalidateRedirects } from './payload/hooks/revalidateRedirects';
+import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types';
+import { Page, Post } from 'src/payload-types';
 
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
-}
+  return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template';
+};
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
   return doc?.slug
     ? `${process.env.NEXT_PUBLIC_SERVER_URL}/${doc.slug}`
-    : process.env.NEXT_PUBLIC_SERVER_URL
-}
+    : process.env.NEXT_PUBLIC_SERVER_URL;
+};
 
 export default buildConfig({
   admin: {
@@ -93,9 +93,9 @@ export default buildConfig({
           enabledCollections: ['pages', 'posts'],
           fields: ({ defaultFields }) => {
             const defaultFieldsWithoutUrl = defaultFields.filter((field) => {
-              if ('name' in field && field.name === 'url') return false
-              return true
-            })
+              if ('name' in field && field.name === 'url') return false;
+              return true;
+            });
 
             return [
               ...defaultFieldsWithoutUrl,
@@ -108,10 +108,10 @@ export default buildConfig({
                 label: ({ t }) => t('fields:enterURL'),
                 required: true,
               },
-            ]
+            ];
           },
         }),
-      ]
+      ];
     },
   }),
   db: mongooseAdapter({
@@ -143,10 +143,10 @@ export default buildConfig({
                 admin: {
                   description: 'You will need to rebuild the website when changing this field.',
                 },
-              }
+              };
             }
-            return field
-          })
+            return field;
+          });
         },
         hooks: {
           afterChange: [revalidateRedirects],
@@ -176,13 +176,13 @@ export default buildConfig({
                       ...rootFeatures,
                       FixedToolbarFeature(),
                       HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    ]
+                    ];
                   },
                 }),
-              }
+              };
             }
-            return field
-          })
+            return field;
+          });
         },
       },
     }),
@@ -193,4 +193,4 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-})
+});
