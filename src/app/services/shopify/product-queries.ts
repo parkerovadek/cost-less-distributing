@@ -4,6 +4,7 @@ import { shopifyClient } from '@/utilities/shopifyClient';
 type Product = {
   id: string;
   title: string;
+  handle: string;
   vendor: string;
   collections: {
     nodes: {
@@ -32,6 +33,7 @@ export const getProducts = async (): Promise<Product[]> => {
           node {
             id
             title
+            handle
             vendor
             collections (first: 10) {
               nodes {
@@ -65,9 +67,47 @@ export const getProducts = async (): Promise<Product[]> => {
   return edges.map(({ node }) => ({
     id: node.id,
     title: node.title,
+    handle: node.handle,
     vendor: node.vendor,
     collections: node.collections,
     variants: node.variants,
     metafield: node.metafield,
   }));
+};
+
+export const getProductByHandle = async (handle: string): Promise<Product> => {
+  const request = await shopifyClient.fetch(
+    `#graphql
+      query ProductByHandle {
+        product(handle: "${handle}") {
+          id
+          title
+          handle
+          vendor
+          collections (first: 10) {
+            nodes {
+              id
+              title
+            }
+          }
+          variants (first: 10) {
+            nodes{
+              id
+            }
+          }
+          metafield(namespace: "custom", key: "company") {
+            namespace
+            key
+            value
+          }
+        }
+      }
+    `,
+  );
+
+  const {
+    data: { product },
+  } = await request.json();
+
+  return product;
 };
