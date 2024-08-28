@@ -9,4 +9,4 @@ node_modules
 # Payload default media upload directory
 public/media/
 
-src/app/types
+src/app/types/storefront

@@ -24,9 +24,9 @@ const CompanySelectorComponent = ({ path, label }: CompanySelectorProps) => {
       label={label}
       name={label}
       path={path}
-      options={companies.map((company) => ({ label: company.title, value: company.id }))}
+      options={companies.map((company) => ({ label: company, value: company }))}
       value={value}
-      onChange={(e) => setValue((e as OptionObject).value)}
+      onChange={(e) => setValue((e as OptionObject)?.value)}
     />
   );
 };
