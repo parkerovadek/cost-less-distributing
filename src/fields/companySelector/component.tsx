@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { getCompanies } from '@/services/shopify';
+import { getVendors } from '@/services/shopify';
 import { SelectInput, useField } from '@payloadcms/ui';
 import { OptionObject } from 'payload';
 
@@ -14,7 +14,7 @@ const CompanySelectorComponent = ({ path, label }: CompanySelectorProps) => {
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
-    getCompanies()
+    getVendors()
       .then(setCompanies)
       .catch(() => console.error('Error fetching companies'));
   }, []);
