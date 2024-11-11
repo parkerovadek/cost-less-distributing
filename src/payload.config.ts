@@ -191,4 +191,13 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
+  // async onInit(payload) {
+  //   await payload.create({
+  //     collection: 'users',
+  //     data: {
+  //       email: 'dev@payloadcms.com',
+  //       password: 'test',
+  //     },
+  //   });
+  // },
 });
