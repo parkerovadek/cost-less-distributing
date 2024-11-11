@@ -1,7 +1,6 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb';
 
-import { payloadCloudPlugin } from '@payloadcms/plugin-cloud';
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
@@ -186,7 +185,6 @@ export default buildConfig({
         },
       },
     }),
-    payloadCloudPlugin(), // storage-adapter-placeholder
   ],
   secret: process.env.PAYLOAD_SECRET,
   sharp,

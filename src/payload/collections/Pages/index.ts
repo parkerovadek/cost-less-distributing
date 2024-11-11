@@ -20,7 +20,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields';
-import { CompanySelector } from 'src/fields/companySelector/field';
+import { ProductSelector } from 'src/fields/productSelector/field';
 export const Pages: CollectionConfig = {
   slug: 'pages',
   access: {
@@ -49,7 +49,7 @@ export const Pages: CollectionConfig = {
       type: 'text',
       required: true,
     },
-    CompanySelector,
+    ProductSelector,
     {
       type: 'tabs',
       tabs: [
