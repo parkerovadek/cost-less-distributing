@@ -59,7 +59,11 @@ export interface UserAuthOperations {
 export interface Page {
   id: string;
   title: string;
-  companies?: string | null;
+  productSelector: {
+    collections: 'Pet' | 'Home' | 'Fashion';
+    companies?: string | null;
+    products?: string | null;
+  };
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText?: {
