@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useMemo, useState } from 'react';
 import { capitalize } from '@/utilities/capitalize';
-import { useProductsFacetedSearchContext } from './products-faceted-search-context';
+import { useProductsFacetedSearchContext } from '@/contexts/products-faceted-search-context';
 
 export const ProductsSearch = ({ collectionName }) => {
   const { query, setQuery, setProductsCollection, productResults, setFacetFilters } =
@@ -43,7 +43,7 @@ export const ProductsSearch = ({ collectionName }) => {
           const facetValues = Object.keys(facets[facetKey]);
 
           return (
-            <>
+            <div key={facetKey}>
               <label>{facet}</label>
 
               <select
@@ -69,7 +69,7 @@ export const ProductsSearch = ({ collectionName }) => {
                   );
                 })}
               </select>
-            </>
+            </div>
           );
         })
       }

@@ -1,6 +1,6 @@
 import { PayloadRedirects } from '@/components/PayloadRedirects';
 import { getCollections, getCollectionsByHandle } from '@/services/shopify';
-import { ProductsFacetedSearchProvider } from '../products-faceted-search-context';
+import { ProductsFacetedSearchProvider } from '../../../contexts/products-faceted-search-context';
 import { ProductsSearch } from '../products-faceted-search';
 
 export const dynamicParams = false;

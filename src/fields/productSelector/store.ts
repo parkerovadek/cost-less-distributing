@@ -7,5 +7,5 @@ interface CompanyStore {
 
 export const useCompanyStore = create<CompanyStore>((set) => ({
   company: '',
-  setCompany: (company: string) => set((state) => ({ company: company })),
+  setCompany: (company: string) => set((_) => ({ company: company })),
 }));

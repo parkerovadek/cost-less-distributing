@@ -31,6 +31,7 @@ export const getCollectionsByHandle = async (handle: string) => {
     `#graphql
       query CollectionsByHandle {
         collectionByHandle(handle: "${handle}") {
+          id,
           title
         }
       }

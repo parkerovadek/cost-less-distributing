@@ -11,6 +11,7 @@ type ProductsFacetedSearchContextType = {
   productsCollection: string;
   setProductsCollection: Dispatch<SetStateAction<string>>;
   productResults: ProductResults;
+  setProductResults?: Dispatch<SetStateAction<ProductResults>>;
   facetFilters?: string[];
   setFacetFilters?: Dispatch<SetStateAction<string[]>>;
 };
@@ -21,6 +22,7 @@ export const ProductsFacetedSearchContext = createContext<ProductsFacetedSearchC
   productsCollection: '',
   setProductsCollection: () => {},
   productResults: { facets: {}, products: [] },
+  setProductResults: () => {},
   facetFilters: [],
   setFacetFilters: () => {},
 });
@@ -64,6 +66,7 @@ export const ProductsFacetedSearchProvider = ({ children }) => {
         productsCollection,
         setProductsCollection,
         productResults,
+        setProductResults,
         facetFilters,
         setFacetFilters,
       }}
