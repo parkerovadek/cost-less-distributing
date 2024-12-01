@@ -11,15 +11,21 @@ type CompanySelectorProps = {
 };
 
 const CompanySelectorComponent = ({ path, label }: CompanySelectorProps) => {
-  const { value, setValue } = useField<string>({ path });
+  const [value, setValue] = useState<string | null>(null);
   const [options, setOptions] = useState([]);
 
   const { getField } = useWatchForm();
   const { value: collections } = getField('productSelector.collections');
+  const { value: dynamicValues } = getField('productSelector.dynamicValues');
 
   const { setCompany } = useCompanyStore();
 
   useEffect(() => {
+    if (typeof dynamicValues === 'string') {
+      const [collection, selectedCompany, selectedProduct] = dynamicValues.split(';');
+      setValue(selectedCompany);
+    }
+
     getVendors()
       .then((response) =>
         setOptions(response.map((company) => ({ label: company, value: company }))),
@@ -43,4 +49,5 @@ const CompanySelectorComponent = ({ path, label }: CompanySelectorProps) => {
     )
   );
 };
+
 export default CompanySelectorComponent;

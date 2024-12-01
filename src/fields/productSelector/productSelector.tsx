@@ -7,7 +7,6 @@ import {
   ProductsFacetedSearchProvider,
   useProductsFacetedSearchContext,
 } from '@/contexts/products-faceted-search-context';
-import { capitalize } from '@/utilities/capitalize';
 
 type ProductSelectorProps = {
   path: string;
@@ -15,11 +14,12 @@ type ProductSelectorProps = {
 };
 
 const ProductSelector = ({ path, label }: ProductSelectorProps) => {
-  const { value, setValue } = useField<string>({ path });
+  const [value, setValue] = useState<string | null>(null);
   const [options, setOptions] = useState([]);
 
   const { getField } = useWatchForm();
   const { value: collections } = getField('productSelector.collections');
+  const { value: dynamicValues } = getField('productSelector.dynamicValues');
 
   const { company } = useCompanyStore();
   const { setFacetFilters, setProductsCollection, productResults } =
@@ -30,6 +30,11 @@ const ProductSelector = ({ path, label }: ProductSelectorProps) => {
     setProductsCollection(collections as string);
 
     if (!company) return;
+
+    if (typeof dynamicValues === 'string') {
+      const [collection, selectedCompany, selectedProduct] = dynamicValues.split(';');
+      setValue(selectedProduct);
+    }
 
     setFacetFilters((prevFilters) => {
       const newFilters = prevFilters.filter((filter) => !filter.startsWith('vendor'));
@@ -64,10 +69,6 @@ const ProductSelector = ({ path, label }: ProductSelectorProps) => {
         path={path}
         value={value}
         onChange={(e: OptionObject) => setValue(e?.value)}
-        // options={products.map((product) => ({
-        //   label: product.title,
-        //   value: product.id,
-        // }))}
         options={options}
       />
     )

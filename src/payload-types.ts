@@ -84,8 +84,7 @@ export interface Page {
   title: string;
   productSelector: {
     collections: 'Pet' | 'Home' | 'Fashion';
-    companies?: string | null;
-    products?: string | null;
+    dynamicValues?: string | null;
   };
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
@@ -678,6 +677,7 @@ export interface PagesSelect<T extends boolean = true> {
         collections?: T;
         companies?: T;
         products?: T;
+        dynamicValues?: T;
       };
   hero?:
     | T

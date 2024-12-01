@@ -28,14 +28,13 @@ export const ProductSelector: Field = {
     {
       name: 'companies',
       label: 'Company',
-      type: 'text',
+      type: 'ui',
       admin: {
         components: {
           Field: {
             path: 'src/fields/productSelector/companySelector.tsx',
             clientProps: {
               label: 'Company',
-              path: 'src/fields/productSelector/companySelector.tsx',
             },
           },
         },
@@ -44,18 +43,29 @@ export const ProductSelector: Field = {
     {
       name: 'products',
       label: 'Product',
-      type: 'text',
+      type: 'ui',
       admin: {
         components: {
           Field: {
             path: 'src/fields/productSelector/productSelector.tsx',
             clientProps: {
               label: 'Product',
-              path: 'src/fields/productSelector/productSelector.tsx',
             },
           },
         },
       },
+    },
+    {
+      name: 'dynamicValues',
+      type: 'text',
+      admin: {
+        components: {
+          Field: {
+            path: 'src/fields/productSelector/productSelectorValues.tsx',
+          },
+        },
+      },
+      // hidden: true,
     },
   ],
 };
