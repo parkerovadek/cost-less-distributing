@@ -1,4 +1,2 @@
-export * from './getCollections';
-export * from './getCollectionsByHandle';
-export * from './getProducts';
-export * from './getProductsInCollection';
+export * from './collection-queries';
+export * from './product-queries';
