@@ -1,4 +1,4 @@
-import { shopifyApiProject, ApiType } from '@shopify/api-codegen-preset'
+import { shopifyApiProject, ApiType } from '@shopify/api-codegen-preset';
 
 export default {
   // For syntax highlighting / auto-complete when writing operations
@@ -10,7 +10,7 @@ export default {
       apiType: ApiType.Storefront,
       apiVersion: '2024-10',
       documents: ['./src/app/**/*.{js,ts,jsx,tsx}'],
-      outputDir: './src/app/types',
+      outputDir: './src/app/types/storefront',
     }),
   },
-}
+};
