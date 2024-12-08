@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useState, Dispatch, SetStateAction, useContext } from 'react';
+import { createContext, useState, Dispatch, SetStateAction, useContext, useMemo } from 'react';
 import { useUpdateEffect } from 'react-use';
 import { PRODUCT_COLLECTIONS, PRODUCT_SEARCH_FACETS } from '@/constants';
 import { getProductSearchResults } from '@/services/search';
@@ -39,7 +39,7 @@ export const ProductsFacetedSearchProvider = ({ children }) => {
         return PRODUCT_SEARCH_FACETS.Pet;
       case PRODUCT_COLLECTIONS.PhoneAccessories:
         return PRODUCT_SEARCH_FACETS.PhoneAccessories;
-      case PRODUCT_COLLECTIONS.Popcorn: // May not need this as the page is not using facets at this time
+      case PRODUCT_COLLECTIONS.Popcorn:
         return PRODUCT_SEARCH_FACETS.Popcorn;
       default:
         return [];
@@ -58,19 +58,22 @@ export const ProductsFacetedSearchProvider = ({ children }) => {
     getProductResults({ query, facets: getFacets(), facetFilters });
   }, [productsCollection, query, facetFilters]);
 
+  const contextValue = useMemo(
+    () => ({
+      query,
+      setQuery,
+      productsCollection,
+      setProductsCollection,
+      productResults,
+      setProductResults,
+      facetFilters,
+      setFacetFilters,
+    }),
+    [query, productsCollection, productResults, facetFilters],
+  );
+
   return (
-    <ProductsFacetedSearchContext.Provider
-      value={{
-        query,
-        setQuery,
-        productsCollection,
-        setProductsCollection,
-        productResults,
-        setProductResults,
-        facetFilters,
-        setFacetFilters,
-      }}
-    >
+    <ProductsFacetedSearchContext.Provider value={contextValue}>
       {children}
     </ProductsFacetedSearchContext.Provider>
   );

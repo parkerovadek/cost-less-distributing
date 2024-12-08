@@ -1,4 +1,3 @@
-'use server';
 import { Facet, ProductSearchQuery, ProductResults, Result } from '@/types/ProductSearch';
 import { searchClient } from '@/utilities/searchClient';
 
