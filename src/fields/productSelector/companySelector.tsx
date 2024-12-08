@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { getCompanies } from '@/services/shopify';
+import { getVendors } from '@/services/shopify';
 import { SelectInput, useField } from '@payloadcms/ui';
 import { OptionObject } from 'payload';
 
@@ -11,22 +11,26 @@ type CompanySelectorProps = {
 
 const CompanySelectorComponent = ({ path, label }: CompanySelectorProps) => {
   const { value, setValue } = useField<string>({ path });
-  const [companies, setCompanies] = useState([]);
+  const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    getCompanies()
-      .then(setCompanies)
+    getVendors()
+      .then((response) =>
+        setOptions(response.map((company) => ({ label: company, value: company }))),
+      )
       .catch(() => console.error('Error fetching companies'));
   }, []);
+
+  console.log('value', value);
 
   return (
     <SelectInput
       label={label}
       name={label}
       path={path}
-      options={companies.map((company) => ({ label: company, value: company }))}
+      options={options}
       value={value}
-      onChange={(e) => setValue((e as OptionObject)?.value)}
+      onChange={(e: OptionObject) => setValue(e?.value)}
     />
   );
 };
