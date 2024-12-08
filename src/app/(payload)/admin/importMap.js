@@ -1,3 +1,4 @@
+import { default as default_62729460cf8177838444c33f0db48058 } from 'src/fields/productSelector/collectionSelector.tsx'
 import { default as default_31c792052f65b912f725404cd0a26438 } from 'src/fields/productSelector/companySelector.tsx'
 import { default as default_82906fde5ad19651a6429c655650e101 } from 'src/fields/productSelector/productSelector.tsx'
 import { default as default_55571d68808dd2410cc191f3fdc52738 } from 'src/fields/productSelector/productSelectorValues.tsx'
@@ -21,6 +22,7 @@ import { default as default_6bf288f4387b1ea5c71ce14579a9098c } from 'src/payload
 import { default as default_85bc59714294c8b0fddcdba92bbdc31b } from 'src/payload/components/BeforeLogin'
 
 export const importMap = {
+  "src/fields/productSelector/collectionSelector.tsx#default": default_62729460cf8177838444c33f0db48058,
   "src/fields/productSelector/companySelector.tsx#default": default_31c792052f65b912f725404cd0a26438,
   "src/fields/productSelector/productSelector.tsx#default": default_82906fde5ad19651a6429c655650e101,
   "src/fields/productSelector/productSelectorValues.tsx#default": default_55571d68808dd2410cc191f3fdc52738,

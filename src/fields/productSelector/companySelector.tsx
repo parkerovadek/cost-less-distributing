@@ -1,9 +1,9 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { getVendors } from '@/services/shopify';
-import { SelectInput, useField, useWatchForm } from '@payloadcms/ui';
+import { useEffect, useRef, useState } from 'react';
+import { SelectInput, useField } from '@payloadcms/ui';
 import { OptionObject } from 'payload';
-import { useCompanyStore } from './store';
+import { getVendors } from '@/services/shopify';
+import { useCollectionStore, useCompanyStore } from './store';
 
 type CompanySelectorProps = {
   path: string;
@@ -11,39 +11,37 @@ type CompanySelectorProps = {
 };
 
 const CompanySelectorComponent = ({ path, label }: CompanySelectorProps) => {
-  const [value, setValue] = useState<string | null>(null);
-  const [options, setOptions] = useState([]);
+  const { value, setValue } = useField<string>({ path });
+  const [options, setOptions] = useState<OptionObject[]>([]);
 
-  const { getField } = useWatchForm();
-  const { value: collections } = getField('productSelector.collections');
-  const { value: dynamicValues } = getField('productSelector.dynamicValues');
-
+  const { collection } = useCollectionStore();
   const { setCompany } = useCompanyStore();
 
   useEffect(() => {
-    if (typeof dynamicValues === 'string') {
-      const [collection, selectedCompany, selectedProduct] = dynamicValues.split(';');
-      setValue(selectedCompany);
-    }
-
     getVendors()
       .then((response) =>
         setOptions(response.map((company) => ({ label: company, value: company }))),
       )
       .catch(() => console.error('Error fetching companies'));
-  }, []);
+
+    if (value) {
+      setValue(value);
+      setCompany(value);
+    }
+  }, [collection, value, setValue, setCompany]);
 
   return (
-    collections === 'Pet' && (
+    collection === 'Pet' && (
       <SelectInput
         label={label}
         name={label}
         path={path}
         options={options}
-        value={value}
+        value={value || ''}
         onChange={(e: OptionObject) => {
-          setValue(e?.value);
-          setCompany(e?.value);
+          const selectedCompany = e?.value || '';
+          setValue(selectedCompany);
+          setCompany(selectedCompany);
         }}
       />
     )

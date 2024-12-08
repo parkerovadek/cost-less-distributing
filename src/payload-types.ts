@@ -82,8 +82,7 @@ export interface UserAuthOperations {
 export interface Page {
   id: string;
   title: string;
-  productSelector: {
-    collections: 'Pet' | 'Home' | 'Fashion';
+  productSelector?: {
     dynamicValues?: string | null;
   };
   hero: {
@@ -674,9 +673,6 @@ export interface PagesSelect<T extends boolean = true> {
   productSelector?:
     | T
     | {
-        collections?: T;
-        companies?: T;
-        products?: T;
         dynamicValues?: T;
       };
   hero?:
@@ -783,11 +779,9 @@ export interface PagesSelect<T extends boolean = true> {
   meta?:
     | T
     | {
-        overview?: T;
         title?: T;
         image?: T;
         description?: T;
-        preview?: T;
       };
   publishedAt?: T;
   slug?: T;
@@ -807,11 +801,9 @@ export interface PostsSelect<T extends boolean = true> {
   meta?:
     | T
     | {
-        overview?: T;
         title?: T;
         image?: T;
         description?: T;
-        preview?: T;
       };
   publishedAt?: T;
   authors?: T;

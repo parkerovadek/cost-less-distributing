@@ -7,23 +7,17 @@ export const ProductSelector: Field = {
   fields: [
     {
       name: 'collections',
-      label: 'Product Collection',
-      type: 'select',
-      required: true,
-      options: [
-        {
-          label: 'Pet',
-          value: 'Pet',
+      type: 'ui',
+      admin: {
+        components: {
+          Field: {
+            path: 'src/fields/productSelector/collectionSelector.tsx',
+            clientProps: {
+              label: 'Product Collection',
+            },
+          },
         },
-        {
-          label: 'Home',
-          value: 'Home',
-        },
-        {
-          label: 'Fashion',
-          value: 'Fashion',
-        },
-      ],
+      },
     },
     {
       name: 'companies',
@@ -65,7 +59,6 @@ export const ProductSelector: Field = {
           },
         },
       },
-      // hidden: true,
     },
   ],
 };
