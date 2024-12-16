@@ -1,4 +1,4 @@
-import type { RequiredDataFromCollectionSlug } from 'payload'
+import type { RequiredDataFromCollectionSlug } from 'payload';
 
 export const home: RequiredDataFromCollectionSlug<'pages'> = {
   slug: 'home',
@@ -6,14 +6,6 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
   hero: {
     type: 'highImpact',
     links: [
-      {
-        link: {
-          type: 'custom',
-          appearance: 'default',
-          label: 'All posts',
-          url: '/posts',
-        },
-      },
       {
         link: {
           type: 'custom',
@@ -202,7 +194,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
                       format: 0,
                       mode: 'normal',
                       style: '',
-                      text: "Manage this site's pages and posts from the ",
+                      text: "Manage this site's pages from the ",
                       version: 1,
                     },
                     {
@@ -340,7 +332,7 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
                       format: 0,
                       mode: 'normal',
                       style: '',
-                      text: 'Custom page builder allows you to create unique page, post, and project layouts for any type of content.',
+                      text: 'Custom page builder allows you to create unique page and project layouts for any type of content.',
                       version: 1,
                     },
                   ],
@@ -507,62 +499,6 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
       position: 'default',
     },
     {
-      blockName: 'Archive Block',
-      blockType: 'archive',
-      categories: [],
-      introContent: {
-        root: {
-          type: 'root',
-          children: [
-            {
-              type: 'heading',
-              children: [
-                {
-                  type: 'text',
-                  detail: 0,
-                  format: 0,
-                  mode: 'normal',
-                  style: '',
-                  text: 'Recent posts',
-                  version: 1,
-                },
-              ],
-              direction: 'ltr',
-              format: '',
-              indent: 0,
-              tag: 'h3',
-              version: 1,
-            },
-            {
-              type: 'paragraph',
-              children: [
-                {
-                  type: 'text',
-                  detail: 0,
-                  format: 0,
-                  mode: 'normal',
-                  style: '',
-                  text: 'The posts below are displayed in an "Archive" layout building block which is an extremely powerful way to display documents on a page. It can be auto-populated by collection or by category, or posts can be individually selected. Pagination controls will automatically appear if the number of results exceeds the number of items per page.',
-                  version: 1,
-                },
-              ],
-              direction: 'ltr',
-              format: '',
-              indent: 0,
-              textFormat: 0,
-              version: 1,
-            },
-          ],
-          direction: 'ltr',
-          format: '',
-          indent: 0,
-          version: 1,
-        },
-      },
-      populateBy: 'collection',
-      relationTo: 'posts',
-    },
-    {
       blockName: 'CTA',
       blockType: 'cta',
       links: [
@@ -570,8 +506,8 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
           link: {
             type: 'custom',
             appearance: 'default',
-            label: 'All posts',
-            url: '/posts',
+            label: 'Home',
+            url: '/',
           },
         },
       ],
@@ -665,4 +601,4 @@ export const home: RequiredDataFromCollectionSlug<'pages'> = {
     title: 'Payload Website Template',
   },
   title: 'Home',
-}
+};

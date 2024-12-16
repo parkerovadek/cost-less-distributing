@@ -1,14 +1,13 @@
-import { cn } from '@/utilities/cn'
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
 
-import type { Page } from '../../../payload-types'
+import type { Page } from '../../../payload-types';
 
-import { ArchiveBlock } from '../../blocks/ArchiveBlock'
-import { CallToActionBlock } from '../../blocks/CallToAction'
-import { ContentBlock } from '../../blocks/Content'
-import { FormBlock } from '../../blocks/Form'
-import { MediaBlock } from '../../blocks/MediaBlock'
-import { toKebabCase } from '../../utilities/toKebabCase'
+import { ArchiveBlock } from '../../blocks/ArchiveBlock';
+import { CallToActionBlock } from '../../blocks/CallToAction';
+import { ContentBlock } from '../../blocks/Content';
+import { FormBlock } from '../../blocks/Form';
+import { MediaBlock } from '../../blocks/MediaBlock';
+import { toKebabCase } from '../../utilities/toKebabCase';
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -16,23 +15,23 @@ const blockComponents = {
   cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
-}
+};
 
 export const Blocks: React.FC<{
-  blocks: Page['layout'][0][]
+  blocks: Page['layout'][0][];
 }> = (props) => {
-  const { blocks } = props
+  const { blocks } = props;
 
-  const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
+  const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0;
 
   if (hasBlocks) {
     return (
       <Fragment>
         {blocks.map((block, index) => {
-          const { blockName, blockType } = block
+          const { blockName, blockType } = block;
 
           if (blockType && blockType in blockComponents) {
-            const Block = blockComponents[blockType]
+            const Block = blockComponents[blockType];
 
             if (Block) {
               return (
@@ -40,14 +39,14 @@ export const Blocks: React.FC<{
                   {/* @ts-expect-error */}
                   <Block id={toKebabCase(blockName)} {...block} />
                 </div>
-              )
+              );
             }
           }
-          return null
+          return null;
         })}
       </Fragment>
-    )
+    );
   }
 
-  return null
-}
+  return null;
+};
