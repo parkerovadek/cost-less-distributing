@@ -1,5 +1,5 @@
 import { default as default_62729460cf8177838444c33f0db48058 } from 'src/fields/productSelector/collectionSelector.tsx'
-import { default as default_31c792052f65b912f725404cd0a26438 } from 'src/fields/productSelector/companySelector.tsx'
+import { default as default_bb3eced95898a85793fe13984ce34c9b } from 'src/fields/productSelector/vendorSelector.tsx'
 import { default as default_82906fde5ad19651a6429c655650e101 } from 'src/fields/productSelector/productSelector.tsx'
 import { default as default_55571d68808dd2410cc191f3fdc52738 } from 'src/fields/productSelector/productSelectorValues.tsx'
 import { RscEntryLexicalCell as RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e } from '@payloadcms/richtext-lexical/rsc'
@@ -23,7 +23,7 @@ import { default as default_85bc59714294c8b0fddcdba92bbdc31b } from 'src/payload
 
 export const importMap = {
   "src/fields/productSelector/collectionSelector.tsx#default": default_62729460cf8177838444c33f0db48058,
-  "src/fields/productSelector/companySelector.tsx#default": default_31c792052f65b912f725404cd0a26438,
+  "src/fields/productSelector/vendorSelector.tsx#default": default_bb3eced95898a85793fe13984ce34c9b,
   "src/fields/productSelector/productSelector.tsx#default": default_82906fde5ad19651a6429c655650e101,
   "src/fields/productSelector/productSelectorValues.tsx#default": default_55571d68808dd2410cc191f3fdc52738,
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,

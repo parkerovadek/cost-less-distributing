@@ -13,15 +13,15 @@ export const useCollectionStore = create<CollectionStore>((set) => ({
 
 // #endregion
 
-// #region Company Store
-interface CompanyStore {
-  company: string;
-  setCompany: (company: string) => void;
+// #region Vendor Store
+interface VendorStore {
+  vendor: string;
+  setVendor: (vendor: string) => void;
 }
 
-export const useCompanyStore = create<CompanyStore>((set) => ({
-  company: '',
-  setCompany: (company: string) => set(() => ({ company })),
+export const useVendorStore = create<VendorStore>((set) => ({
+  vendor: '',
+  setVendor: (vendor: string) => set(() => ({ vendor })),
 }));
 
 // #endregion

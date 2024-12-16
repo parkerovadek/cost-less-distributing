@@ -1,13 +1,13 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import { useField, useWatchForm } from '@payloadcms/ui';
-import { useCollectionStore, useCompanyStore, useProductStore } from './store';
+import { useCollectionStore, useVendorStore, useProductStore } from './store';
 
 const ProductSelectorValues = ({ path }: { path: string }) => {
   const { value, setValue } = useField<string>({ path });
 
   const { collection, setCollection } = useCollectionStore();
-  const { company, setCompany } = useCompanyStore();
+  const { vendor, setVendor } = useVendorStore();
   const { product, setProduct } = useProductStore();
 
   const { dispatchFields } = useWatchForm();
@@ -27,12 +27,12 @@ const ProductSelectorValues = ({ path }: { path: string }) => {
           });
         }
 
-        if (parsedData.company) {
-          setCompany(parsedData.company);
+        if (parsedData.vendor) {
+          setVendor(parsedData.vendor);
           dispatchFields({
             type: 'UPDATE',
             path: 'productSelector.companies',
-            value: parsedData.company,
+            value: parsedData.vendor,
           });
         }
 
@@ -50,21 +50,21 @@ const ProductSelectorValues = ({ path }: { path: string }) => {
         console.error('Error parsing hidden field JSON:', err);
       }
     }
-  }, [value, setCollection, setCompany, setProduct, dispatchFields]);
+  }, [value, setCollection, setVendor, setProduct, dispatchFields]);
 
   useEffect(() => {
     const currentCollection = collection || '';
-    const currentCompany = company || '';
+    const currentVendor = vendor || '';
     const currentProduct = product || '';
 
     const data = {
       collection: currentCollection,
-      company: currentCompany,
+      vendor: currentVendor,
       product: currentProduct,
     };
 
     setValue(JSON.stringify(data));
-  }, [collection, company, product, setValue]);
+  }, [collection, vendor, product, setValue]);
 
   return <input type="hidden" value={value || ''} />;
 };

@@ -21,14 +21,14 @@ export const ProductSelector: Field = {
     },
     {
       name: 'companies',
-      label: 'Company',
+      label: 'Vendor',
       type: 'ui',
       admin: {
         components: {
           Field: {
-            path: 'src/fields/productSelector/companySelector.tsx',
+            path: 'src/fields/productSelector/vendorSelector.tsx',
             clientProps: {
-              label: 'Company',
+              label: 'Vendor',
             },
           },
         },

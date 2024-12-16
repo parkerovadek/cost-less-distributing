@@ -3,32 +3,30 @@ import { useEffect, useRef, useState } from 'react';
 import { SelectInput, useField } from '@payloadcms/ui';
 import { OptionObject } from 'payload';
 import { getVendors } from '@/services/shopify';
-import { useCollectionStore, useCompanyStore } from './store';
+import { useCollectionStore, useVendorStore } from './store';
 
-type CompanySelectorProps = {
+type VendorSelectorProps = {
   path: string;
   label: string;
 };
 
-const CompanySelectorComponent = ({ path, label }: CompanySelectorProps) => {
+const VendorSelectorComponent = ({ path, label }: VendorSelectorProps) => {
   const { value, setValue } = useField<string>({ path });
   const [options, setOptions] = useState<OptionObject[]>([]);
 
   const { collection } = useCollectionStore();
-  const { setCompany } = useCompanyStore();
+  const { setVendor } = useVendorStore();
 
   useEffect(() => {
     getVendors()
-      .then((response) =>
-        setOptions(response.map((company) => ({ label: company, value: company }))),
-      )
+      .then((response) => setOptions(response.map((vendor) => ({ label: vendor, value: vendor }))))
       .catch(() => console.error('Error fetching companies'));
 
     if (value) {
       setValue(value);
-      setCompany(value);
+      setVendor(value);
     }
-  }, [collection, value, setValue, setCompany]);
+  }, [collection, value, setValue, setVendor]);
 
   return (
     collection === 'Pet' && (
@@ -39,13 +37,13 @@ const CompanySelectorComponent = ({ path, label }: CompanySelectorProps) => {
         options={options}
         value={value || ''}
         onChange={(e: OptionObject) => {
-          const selectedCompany = e?.value || '';
-          setValue(selectedCompany);
-          setCompany(selectedCompany);
+          const selectedVendor = e?.value || '';
+          setValue(selectedVendor);
+          setVendor(selectedVendor);
         }}
       />
     )
   );
 };
 
-export default CompanySelectorComponent;
+export default VendorSelectorComponent;

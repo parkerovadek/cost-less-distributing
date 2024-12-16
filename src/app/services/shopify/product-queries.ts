@@ -112,30 +112,6 @@ export const getProductByHandle = async (handle: string): Promise<Product> => {
   return product;
 };
 
-export const getCollections = async (): Promise<string[]> => {
-  const request = await shopifyClient.fetch(
-    `#graphql
-      query Collections {
-        collections(first: 50) {
-          edges {
-            node {
-              title
-            }
-          }
-        }
-      }
-    `,
-  );
-
-  const {
-    data: {
-      collections: { edges },
-    },
-  } = await request.json();
-
-  return edges.map(({ node }) => node.title);
-};
-
 export const getVendors = async (): Promise<string[]> => {
   const request = await shopifyClient.fetch(
     `#graphql

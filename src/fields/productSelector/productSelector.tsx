@@ -2,7 +2,7 @@
 import { SelectInput, useField } from '@payloadcms/ui';
 import { OptionObject } from 'payload';
 import { useEffect, useState } from 'react';
-import { useCollectionStore, useCompanyStore } from './store';
+import { useCollectionStore, useVendorStore } from './store';
 import { useProductStore } from './store';
 import {
   ProductsFacetedSearchProvider,
@@ -18,7 +18,7 @@ const ProductSelector = ({ path, label }: ProductSelectorProps) => {
   const { value, setValue } = useField<string>({ path });
   const [options, setOptions] = useState<OptionObject[]>([]);
 
-  const { company } = useCompanyStore();
+  const { vendor } = useVendorStore();
   const { collection } = useCollectionStore();
   const { product, setProduct } = useProductStore();
 
@@ -32,14 +32,14 @@ const ProductSelector = ({ path, label }: ProductSelectorProps) => {
   }, [collection, setProductsCollection]);
 
   useEffect(() => {
-    if (company) {
+    if (vendor) {
       setFacetFilters((prevFilters) => {
         const newFilters = prevFilters.filter((filter) => !filter.startsWith('vendor'));
-        newFilters.push(`vendor:${company}`);
+        newFilters.push(`vendor:${vendor}`);
         return newFilters;
       });
     }
-  }, [company, setFacetFilters]);
+  }, [vendor, setFacetFilters]);
 
   useEffect(() => {
     const facets = productResults?.facets || {};
@@ -58,7 +58,7 @@ const ProductSelector = ({ path, label }: ProductSelectorProps) => {
   }, [productResults, product, value, setValue]);
 
   return (
-    company &&
+    vendor &&
     collection && (
       <SelectInput
         label={label}
