@@ -16,8 +16,6 @@ type Args = {
   }>;
 };
 
-// TESTING SOMETHING
-
 export const generateMetadata = ({ params, searchParams }: Args): Promise<Metadata> =>
   generatePageMetadata({ config, params, searchParams });
 
