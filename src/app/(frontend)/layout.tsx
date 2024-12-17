@@ -1,20 +1,20 @@
-import type { Metadata } from 'next'
+import type { Metadata } from 'next';
 
-import { cn } from '@/utilities/cn'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
-import React from 'react'
+import { cn } from '@/utilities/cn';
+import { GeistMono } from 'geist/font/mono';
+import { GeistSans } from 'geist/font/sans';
+import React, { ReactNode } from 'react';
 
-import { AdminBar } from '../components/AdminBar'
-import { Footer } from '../components/Footer'
-import { Header } from '../components/Header'
-import { LivePreviewListener } from '../components/LivePreviewListener'
-import { Providers } from '../providers'
-import { InitTheme } from '../providers/Theme/InitTheme'
-import { mergeOpenGraph } from '../utilities/mergeOpenGraph'
-import './globals.css'
+import { AdminBar } from '../components/AdminBar';
+import { Footer } from '../components/Footer';
+import { Header } from '../components/Header';
+import { LivePreviewListener } from '../components/LivePreviewListener';
+import { Providers } from '../providers';
+import { InitTheme } from '../providers/Theme/InitTheme';
+import { mergeOpenGraph } from '../utilities/mergeOpenGraph';
+import './globals.css';
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
       <head>
@@ -33,7 +33,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         </Providers>
       </body>
     </html>
-  )
+  );
 }
 
 export const metadata: Metadata = {
@@ -43,4 +43,4 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     creator: '@payloadcms',
   },
-}
+};

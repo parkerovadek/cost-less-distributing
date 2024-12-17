@@ -133,5 +133,5 @@ export const getVendors = async (): Promise<string[]> => {
     },
   } = await request.json();
 
-  return [...new Set(edges.map(({ node }) => node.vendor))];
+  return [...new Set(edges.map(({ node }) => node.vendor))] as string[];
 };

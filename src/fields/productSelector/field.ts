@@ -7,36 +7,28 @@ export const ProductSelector: Field = {
   fields: [
     {
       name: 'collections',
-      label: 'Product Collection',
-      type: 'select',
-      required: true,
-      options: [
-        {
-          label: 'Pet',
-          value: 'Pet',
+      type: 'ui',
+      admin: {
+        components: {
+          Field: {
+            path: 'src/fields/productSelector/collectionSelector.tsx',
+            clientProps: {
+              label: 'Product Collection',
+            },
+          },
         },
-        {
-          label: 'Home',
-          value: 'Home',
-        },
-        {
-          label: 'Fashion',
-          value: 'Fashion',
-        },
-      ],
+      },
     },
     {
       name: 'companies',
-      label: 'Company',
-      type: 'text',
+      label: 'Vendor',
+      type: 'ui',
       admin: {
-        condition: (data, siblingData) => siblingData.collections === 'Pet',
         components: {
           Field: {
-            path: 'src/fields/productSelector/companySelector.tsx',
+            path: 'src/fields/productSelector/vendorSelector.tsx',
             clientProps: {
-              label: 'Company',
-              path: 'src/fields/productSelector/companySelector.tsx',
+              label: 'Vendor',
             },
           },
         },
@@ -45,64 +37,28 @@ export const ProductSelector: Field = {
     {
       name: 'products',
       label: 'Product',
-      type: 'text',
+      type: 'ui',
       admin: {
-        condition: (data, siblingData) =>
-          siblingData.collections !== 'Pet' || siblingData.companies !== null,
         components: {
           Field: {
             path: 'src/fields/productSelector/productSelector.tsx',
             clientProps: {
               label: 'Product',
-              path: 'src/fields/productSelector/productSelector.tsx',
             },
+          },
+        },
+      },
+    },
+    {
+      name: 'dynamicValues',
+      type: 'text',
+      admin: {
+        components: {
+          Field: {
+            path: 'src/fields/productSelector/productSelectorValues.tsx',
           },
         },
       },
     },
   ],
 };
-// export const ProductSelector: Field = {
-//   name: 'productSelector',
-//   label: 'Product Selector',
-//   type: 'group',
-//   fields: [
-//     {
-//       name: 'collections',
-//       label: 'Product Collection',
-//       type: 'text',
-//     },
-//     {
-//       name: 'companies',
-//       label: 'Company',
-//       type: 'text',
-//       admin: {
-//         components: {
-//           Field: {
-//             path: 'src/fields/productSelector/companySelector.tsx',
-//             clientProps: {
-//               path: 'src/fields/productSelector/companySelector.tsx',
-//               label: 'Company',
-//             },
-//           },
-//         },
-//       },
-//     },
-//     {
-//       name: 'products',
-//       label: 'Product',
-//       type: 'text',
-//       admin: {
-//         components: {
-//           Field: {
-//             path: 'src/fields/productSelector/productSelector.tsx',
-//             clientProps: {
-//               path: 'src/fields/productSelector/productSelector.tsx',
-//               label: 'Company',
-//             },
-//           },
-//         },
-//       },
-//     },
-//   ],
-// };

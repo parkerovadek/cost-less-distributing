@@ -1,11 +1,11 @@
-import type { Block } from 'payload'
+import type { Block } from 'payload';
 
 import {
   FixedToolbarFeature,
   HeadingFeature,
   InlineToolbarFeature,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+} from '@payloadcms/richtext-lexical';
 
 export const Archive: Block = {
   slug: 'archive',
@@ -20,7 +20,7 @@ export const Archive: Block = {
             HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
             FixedToolbarFeature(),
             InlineToolbarFeature(),
-          ]
+          ];
         },
       }),
       label: 'Intro Content',
@@ -37,21 +37,6 @@ export const Archive: Block = {
         {
           label: 'Individual Selection',
           value: 'selection',
-        },
-      ],
-    },
-    {
-      name: 'relationTo',
-      type: 'select',
-      admin: {
-        condition: (_, siblingData) => siblingData.populateBy === 'collection',
-      },
-      defaultValue: 'posts',
-      label: 'Collections To Show',
-      options: [
-        {
-          label: 'Posts',
-          value: 'posts',
         },
       ],
     },
@@ -75,19 +60,9 @@ export const Archive: Block = {
       defaultValue: 10,
       label: 'Limit',
     },
-    {
-      name: 'selectedDocs',
-      type: 'relationship',
-      admin: {
-        condition: (_, siblingData) => siblingData.populateBy === 'selection',
-      },
-      hasMany: true,
-      label: 'Selection',
-      relationTo: ['posts'],
-    },
   ],
   labels: {
     plural: 'Archives',
     singular: 'Archive',
   },
-}
+};

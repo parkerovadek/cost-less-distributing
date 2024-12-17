@@ -1,41 +1,86 @@
 'use client';
-import { SelectInput, useField, useWatchForm } from '@payloadcms/ui';
+import { SelectInput, useField } from '@payloadcms/ui';
 import { OptionObject } from 'payload';
 import { useEffect, useState } from 'react';
+import { useCollectionStore, useVendorStore } from './store';
+import { useProductStore } from './store';
+import {
+  ProductsFacetedSearchProvider,
+  useProductsFacetedSearchContext,
+} from '@/contexts/products-faceted-search-context';
 
 type ProductSelectorProps = {
   path: string;
   label: string;
 };
 
-const ProductSelectorComponent = ({ path, label }: ProductSelectorProps) => {
-  const [options, setOptions] = useState([]);
-  const { getFields, getField } = useWatchForm();
+const ProductSelector = ({ path, label }: ProductSelectorProps) => {
   const { value, setValue } = useField<string>({ path });
+  const [options, setOptions] = useState<OptionObject[]>([]);
 
-  const fields = getFields();
-  const { value: collections } = getField('productSelector.collections');
-  const { value: companies } = getField('productSelector.companies');
+  const { vendor } = useVendorStore();
+  const { collection } = useCollectionStore();
+  const { product, setProduct } = useProductStore();
+
+  const { setFacetFilters, setProductsCollection, productResults } =
+    useProductsFacetedSearchContext();
 
   useEffect(() => {
-    console.log('fields', fields);
-    console.log('collections', collections);
-    console.log('companies', companies);
-  }, [fields, collections, companies]);
+    if (collection) {
+      setProductsCollection(collection);
+    }
+  }, [collection, setProductsCollection]);
+
+  useEffect(() => {
+    if (vendor) {
+      setFacetFilters((prevFilters) => {
+        const newFilters = prevFilters.filter((filter) => !filter.startsWith('vendor'));
+        newFilters.push(`vendor:${vendor}`);
+        return newFilters;
+      });
+    }
+  }, [vendor, setFacetFilters]);
+
+  useEffect(() => {
+    const facets = productResults?.facets || {};
+    const productFacets = Object.keys(facets).filter((key) => key.includes('product'));
+    const newOptions = productFacets.flatMap((facetKey) =>
+      Object.keys(facets[facetKey]).map((facetValue) => ({
+        label: facetValue,
+        value: facetValue,
+      })),
+    );
+    setOptions(newOptions);
+
+    if (product && !value) {
+      setValue(product);
+    }
+  }, [productResults, product, value, setValue]);
 
   return (
-    <SelectInput
-      label={label}
-      name={label}
-      path={path}
-      value={value}
-      onChange={(e: OptionObject) => setValue(e?.value)}
-      // options={products.map((product) => ({
-      //   label: product.title,
-      //   value: product.id,
-      // }))}
-      options={options}
-    />
+    vendor &&
+    collection && (
+      <SelectInput
+        label={label}
+        name={label}
+        path={path}
+        options={options}
+        value={value || ''}
+        onChange={(e: OptionObject) => {
+          const selectedProduct = e?.value || '';
+          setValue(selectedProduct);
+          setProduct(selectedProduct);
+        }}
+      />
+    )
+  );
+};
+
+const ProductSelectorComponent = ({ path, label }: ProductSelectorProps) => {
+  return (
+    <ProductsFacetedSearchProvider>
+      <ProductSelector path={path} label={label} />
+    </ProductsFacetedSearchProvider>
   );
 };
 
